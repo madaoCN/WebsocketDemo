@@ -8,7 +8,7 @@ import logging
 import threading
 import time
 from collections import defaultdict
-
+import json
 import websocket
 
 logger = logging.getLogger('websocket')
@@ -29,14 +29,19 @@ def generate_ts():
 
 #     threading.Timer(TIMER_INTERVAL, send_heart_beat, (ws,)).start()
 
+def send_msg(ws, msg):
+    msg_body = {"body": msg}
+    ws.send(json.dumps(msg_body))
+
 # client callback
 def on_open(ws):
     logging.debug(ws)
     logging.info("### socket opened ###")
-    # keep_alive()
-    ws.send("hello")
 
-    time.sleep(10)
+    # keep_alive()
+    while True:
+        content = raw_input("请输入内容: ") 
+        send_msg(ws, content)
 
 def on_message(ws, message):
     logging.debug(ws)
@@ -71,7 +76,7 @@ def main():
     '''
     program entrance
     '''
-    websocket.enableTrace(True)
+    #websocket.enableTrace(True)
     ws = websocket.WebSocketApp("ws://127.0.0.1:8888",
                                 # on_message=on_message,
                                 on_error=on_error,
