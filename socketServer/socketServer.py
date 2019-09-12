@@ -74,5 +74,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-    # cache = [{"id": str(uuid.uuid4()), "body": "body"}]
-    # print type(json.dumps(cache))
