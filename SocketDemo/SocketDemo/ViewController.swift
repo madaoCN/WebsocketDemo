@@ -16,6 +16,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var sendBtn: UIButton!
     @IBOutlet weak var contentTableView: UITableView!
     @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var uploadImageBtn: UIButton!
     
     var dataSource =  [Dictionary<String, String>]()
     
@@ -37,10 +38,12 @@ class ViewController: UIViewController {
         connect.didOpenBlock = {obj in
             self.changeStatus("connected")
             self.dataSource.removeAll()
+            self.connectBtn.isSelected = true
         }
         
         connect.didCloseBlock = {obj in
             self.changeStatus("closed")
+            self.connectBtn.isSelected = false
         }
         
         return connect
@@ -61,9 +64,16 @@ class ViewController: UIViewController {
     }
     
     @IBAction func handleConnect(_ sender: Any) {
-        self.changeStatus("connecting")
-        self.socketConnect.url = self.connectUrlField.text
-        self.socketConnect.open()
+        
+        if self.connectBtn.isSelected == false {
+            
+            self.changeStatus("connecting")
+            self.socketConnect.url = self.connectUrlField.text
+            self.socketConnect.open()
+        } else {
+            
+            self.socketConnect.close()
+        }
     }
     
     @IBAction func handleSend(_ sender: Any) {
@@ -72,6 +82,23 @@ class ViewController: UIViewController {
             return
         }
         self.socketConnect.send(["body": content])
+    }
+    
+    @IBAction func handleUploadImage(_ sender: Any) {
+        
+        let picPath = Bundle.main.path(forResource: "eva", ofType: "jpg")
+        guard let path = picPath else {
+            
+            return
+        }
+        
+        let image = UIImage.init(contentsOfFile: path)
+        guard let img = image else {
+            
+            return
+        }
+        
+        self.socketConnect.send(img)
     }
 }
 

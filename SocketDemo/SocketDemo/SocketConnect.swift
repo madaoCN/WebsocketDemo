@@ -53,8 +53,8 @@ class SocketConnect: NSObject {
         }
         
         ws.close(withCode: 100, reason: "manual close")
-        self.socket?.delegate = nil
-        self.socket = nil
+//        self.socket?.delegate = nil
+//        self.socket = nil
     }
 }
 
@@ -75,6 +75,32 @@ extension SocketConnect {
         guard JSONSerialization.isValidJSONObject(jsonDict) == true else {
             return
         }
+        
+        guard let data = try? JSONSerialization.data(withJSONObject: jsonDict, options: JSONSerialization.WritingOptions.prettyPrinted) else {
+            return
+        }
+        
+        let dataStr = NSString.init(data: data, encoding: String.Encoding.utf8.rawValue)
+        
+        self.socket?.send(dataStr)
+    }
+    
+    func send(_ image: UIImage?) {
+        
+        guard self.socket?.readyState == SRReadyState.OPEN else {
+            return
+        }
+        
+        guard let img = image else {
+            return
+        }
+        
+        guard let imgData = img.jpegData(compressionQuality: 0.1)?.base64EncodedData() else {
+            return
+        }
+        
+        
+        let jsonDict = ["img": NSString.init(data: imgData, encoding: String.Encoding.ascii.rawValue)]
         
         guard let data = try? JSONSerialization.data(withJSONObject: jsonDict, options: JSONSerialization.WritingOptions.prettyPrinted) else {
             return

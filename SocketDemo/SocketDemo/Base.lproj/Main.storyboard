@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,7 +21,6 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="GbE-Ys-XeN"/>
                                 </constraints>
-                                <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -32,7 +29,6 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="kYa-Ik-NT9"/>
                                 </constraints>
-                                <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -42,6 +38,7 @@
                                     <constraint firstAttribute="width" constant="80" id="rr2-pk-NH2"/>
                                 </constraints>
                                 <state key="normal" title="connect"/>
+                                <state key="selected" title="disconnect"/>
                                 <connections>
                                     <action selector="handleConnect:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6qh-cw-Diz"/>
                                 </connections>
@@ -57,11 +54,11 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Iye-ph-Gpj">
-                                <rect key="frame" x="15" y="202" width="384" height="660"/>
+                                <rect key="frame" x="15" y="236" width="384" height="626"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="unconnected" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wpg-0m-UcZ">
-                                <rect key="frame" x="15" y="162" width="384" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="disconnect" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wpg-0m-UcZ">
+                                <rect key="frame" x="15" y="196" width="384" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="joP-k9-1U6"/>
                                 </constraints>
@@ -69,12 +66,23 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FZm-BA-uxg">
+                                <rect key="frame" x="15" y="156" width="120" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="Uhl-fJ-wF4"/>
+                                </constraints>
+                                <state key="normal" title="upload image"/>
+                                <connections>
+                                    <action selector="handleUploadImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IB1-v6-OHo"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Iye-ph-Gpj" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="15" id="4FY-Vm-1rZ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Iye-ph-Gpj" secondAttribute="trailing" constant="15" id="9Nb-Vk-Yq0"/>
                             <constraint firstItem="Iye-ph-Gpj" firstAttribute="top" secondItem="wpg-0m-UcZ" secondAttribute="bottom" constant="10" id="EqF-dA-IV0"/>
+                            <constraint firstItem="FZm-BA-uxg" firstAttribute="leading" secondItem="OtI-xX-skz" secondAttribute="leading" id="Hlc-3q-6HU"/>
                             <constraint firstItem="78c-fC-t5q" firstAttribute="leading" secondItem="32z-ff-3nd" secondAttribute="trailing" constant="20" id="JVm-RE-HqS"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Iye-ph-Gpj" secondAttribute="bottom" id="KJP-3M-JEh"/>
                             <constraint firstItem="8kk-ZT-YNk" firstAttribute="leading" secondItem="78c-fC-t5q" secondAttribute="leading" id="KaY-97-rhg"/>
@@ -83,12 +91,13 @@
                             <constraint firstItem="wpg-0m-UcZ" firstAttribute="leading" secondItem="OtI-xX-skz" secondAttribute="leading" id="aSE-f2-7W7"/>
                             <constraint firstItem="8kk-ZT-YNk" firstAttribute="centerY" secondItem="OtI-xX-skz" secondAttribute="centerY" id="bfw-rL-p0u"/>
                             <constraint firstItem="32z-ff-3nd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="15" id="h88-wY-0vs"/>
+                            <constraint firstItem="wpg-0m-UcZ" firstAttribute="top" secondItem="FZm-BA-uxg" secondAttribute="bottom" constant="10" id="hCB-Mk-IMZ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="78c-fC-t5q" secondAttribute="trailing" constant="15" id="kjg-Pr-UAf"/>
+                            <constraint firstItem="FZm-BA-uxg" firstAttribute="top" secondItem="OtI-xX-skz" secondAttribute="bottom" constant="10" id="ljH-vA-fH1"/>
                             <constraint firstItem="78c-fC-t5q" firstAttribute="centerY" secondItem="32z-ff-3nd" secondAttribute="centerY" id="nfh-EI-jY9"/>
                             <constraint firstItem="wpg-0m-UcZ" firstAttribute="trailing" secondItem="8kk-ZT-YNk" secondAttribute="trailing" id="nu7-Zz-fSu"/>
                             <constraint firstItem="32z-ff-3nd" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="r2z-cu-fo5"/>
                             <constraint firstItem="OtI-xX-skz" firstAttribute="leading" secondItem="32z-ff-3nd" secondAttribute="leading" id="tb6-5d-7ep"/>
-                            <constraint firstItem="wpg-0m-UcZ" firstAttribute="top" secondItem="OtI-xX-skz" secondAttribute="bottom" constant="16" id="wVy-Cf-J11"/>
                             <constraint firstItem="8kk-ZT-YNk" firstAttribute="trailing" secondItem="78c-fC-t5q" secondAttribute="trailing" id="x2F-EO-zcf"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -100,6 +109,7 @@
                         <outlet property="inputContentField" destination="OtI-xX-skz" id="pEn-0X-Ylk"/>
                         <outlet property="sendBtn" destination="8kk-ZT-YNk" id="6t6-Ll-VGo"/>
                         <outlet property="statusLabel" destination="wpg-0m-UcZ" id="gDQ-LZ-4oA"/>
+                        <outlet property="uploadImageBtn" destination="FZm-BA-uxg" id="Ovv-OJ-rAH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

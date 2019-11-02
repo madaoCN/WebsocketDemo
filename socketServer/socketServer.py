@@ -9,6 +9,8 @@ import tornado.web
 import tornado.websocket
 import uuid
 import json
+import codecs
+import base64
 
 from tornado.options import define, options
 
@@ -61,10 +63,19 @@ class SocketServerHandler(tornado.websocket.WebSocketHandler):
     def on_message(self, message):
         logging.info("got message %r", message)
         parsed = tornado.escape.json_decode(message)
-        chat = {"id": str(uuid.uuid4()), "body": parsed["body"]}
-        SocketServerHandler.update_cache(chat)
-        SocketServerHandler.send_updates(chat)
-        
+        if parsed.has_key("body"):
+            chat = {"id": str(uuid.uuid4()), "body": parsed["body"]}
+            SocketServerHandler.update_cache(chat)
+            SocketServerHandler.send_updates(chat)
+        elif parsed.has_key("img"):
+            chat = {"id": str(uuid.uuid4()), "body": "Receive an image"}
+            SocketServerHandler.update_cache(chat)
+            SocketServerHandler.send_updates(chat)
+            # 保存本地
+            img_data = parsed["img"]
+            img_data = base64.b64decode(img_data)
+            with codecs.open("./image.jpg", "wb") as file:
+                file.write(img_data)
 
 def main():
     tornado.options.parse_command_line()
