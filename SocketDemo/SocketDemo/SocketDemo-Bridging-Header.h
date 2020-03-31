@@ -3,3 +3,4 @@
 //
 
 #import <SocketRocket/SRWebSocket.h>
+#import "fishhook.h"
